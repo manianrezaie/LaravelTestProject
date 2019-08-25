@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::group(["middleware" => ['auth'], 'prefix' => 'admin'], function () {
+    Route::get('/', 'Admin\MainController@index')->name('admin_dashboard');
+});

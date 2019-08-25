@@ -1,0 +1,43 @@
+/* Font */
+
+/*
+@font-face {
+    font-family: yekan_light;
+    src: url("../fonts/iranyekanweblight.woff");
+}
+@font-face {
+    font-family: yekan;
+    src: url("../fonts/iranyekanwebregular.woff");
+}
+@font-face {
+    font-family: yekan_bold;
+    src: url("../fonts/iranyekanwebbold.woff");
+}
+*/
+
+@font-face{
+    font-family:'IranSans';src:url('../fonts/irsans-l.ttf');
+    src:url('../fonts/irsans-l.ttf') format('truetype');
+}
+
+@font-face{
+    font-family:'irsans-b';
+    src:url('../fonts/irsans-b.ttf') format('truetype');
+}
+
+/* /Font */
+*{
+    font-family: IranSans , Roboto , FontAwesome , LineAwesome , Flaticon !important;
+}
+
+select.form-control {
+    padding-bottom: 5px;
+}
+
+.m-dropdown.m-dropdown--align-center .m-dropdown__wrapper{
+    margin-right: -200px !important;
+}
+
+.modal .modal-content .modal-header .close::before{
+    content: "\f00d"!important;
+}
