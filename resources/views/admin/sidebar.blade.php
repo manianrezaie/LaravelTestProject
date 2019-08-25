@@ -40,6 +40,16 @@
             </a>
         </li>
 
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <a href="{{ route('admin_players') }}" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon fa fa-user"></i>
+                <span class="m-menu__link-text">
+                    بازیکن ها
+                </span>
+
+            </a>
+        </li>
+
 
     </ul>
 </div>

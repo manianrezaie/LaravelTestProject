@@ -26,4 +26,11 @@ Route::group(["middleware" => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('/teams/new', 'Admin\TeamController@newTeamSave')->name('admin_new_team_save');
     Route::get('/teams/edit/{id}', 'Admin\TeamController@editTeamForm')->name('admin_edit_team');
     Route::post('/teams/edit', 'Admin\TeamController@editTeamSave')->name('admin_edit_team_save');
+
+    //players
+    Route::get('/players', 'Admin\PlayerController@index')->name('admin_players');
+    Route::get('/players/new', 'Admin\PlayerController@newPlayerForm')->name('admin_new_player');
+    Route::post('/players/new', 'Admin\PlayerController@newPlayerSave')->name('admin_new_player_save');
+    Route::get('/players/edit/{id}', 'Admin\PlayerController@editPlayerForm')->name('admin_edit_player');
+    Route::post('/players/edit', 'Admin\PlayerController@editPlayerSave')->name('admin_edit_player_save');
 });
