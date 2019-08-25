@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FileController;
+use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeamController extends Controller
 {
@@ -107,7 +109,7 @@ class TeamController extends Controller
             'title' => $request->name,
             'city' => $request->city,
             'image' => $image,
-            'id' =>$request->id
+            'id' => $request->id
         ];
 
         $result = Team::edit($args);
@@ -118,4 +120,26 @@ class TeamController extends Controller
         return back()->with(['danger' => "خطا در ذخیره تغییرات تیم!"]);
     }
 
+    public function getTeamPlayersView(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'integer|required'
+        ]);
+
+        /** @var Team $team */
+        $team = Team::get($request->id);
+        if ($request->has('action') and $request->has('player_id')) {
+            if (is_numeric($request->player_id)) {
+                /** @var Player $player */
+                $player = Player::get($request->player_id);
+                if ($request->action == 'add') {
+                    $player->teams()->sync($team , false);
+                } else if ($request->action == 'remove') {
+                    $player->teams()->detach($team->id);
+                }
+            }
+        }
+
+        return view('admin.team.team_player', ['team' => $team]);
+    }
 }
