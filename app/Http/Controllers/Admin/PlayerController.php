@@ -52,8 +52,8 @@ class PlayerController extends Controller
             'title' => $request->name,
             'city' => $request->city,
             'image' => $image,
-            'score' =>$request->score,
-            'birth_date' =>$request->birth_date,
+            'score' => $request->score,
+            'birth_date' => $request->birth_date,
         ];
 
         $result = Player::insert($args);
@@ -108,9 +108,9 @@ class PlayerController extends Controller
             'title' => $request->name,
             'city' => $request->city,
             'image' => $image,
-            'id' =>$request->id,
-            'score' =>$request->score,
-            'birth_date' =>$request->birth_date,
+            'id' => $request->id,
+            'score' => $request->score,
+            'birth_date' => $request->birth_date,
         ];
 
         $result = Player::edit($args);
@@ -119,6 +119,22 @@ class PlayerController extends Controller
             return back()->with(['success' => "بازیکن مورد نظر با موفقیت ذخیره شد"]);
 
         return back()->with(['danger' => "خطا در ذخیره تغییرات بازیکن!"]);
+    }
+
+
+    public function apiListAll(Request $request)
+    {
+        if ($request->has("c")) {
+            if (is_numeric($request->c)) {
+                return new \App\Http\Resources\PlayerCollection(Player::orderBy('id', 'desc')->take($request->c)->get());
+            }
+        }
+        return new \App\Http\Resources\PlayerCollection(Player::all());
+    }
+
+    public function apiShow(Request $request)
+    {
+        return new \App\Http\Resources\Player(Player::get($request->id));
     }
 
 }

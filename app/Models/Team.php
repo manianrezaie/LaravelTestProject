@@ -36,7 +36,7 @@ class Team extends Model
 
     public function players()
     {
-        return $this->hasManyThrough(Player::class, TeamPlayer::class, "team_id", "id");
+        return $this->belongsToMany(Player::class, 'team_players');
     }
 
     public function teamPlayers()
