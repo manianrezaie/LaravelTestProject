@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/players', 'Admin\PlayerController@apiListAll');
+Route::get('/player/{id}', 'Admin\PlayerController@apiShow');
+Route::get('/teams', 'Admin\TeamController@apiListAll');
+Route::get('/team/{id}', 'Admin\TeamController@apiShow');

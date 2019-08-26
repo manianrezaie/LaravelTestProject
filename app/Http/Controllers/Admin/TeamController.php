@@ -142,4 +142,21 @@ class TeamController extends Controller
 
         return view('admin.team.team_player', ['team' => $team]);
     }
+
+
+
+    public function apiListAll(Request $request)
+    {
+        if ($request->has("c")) {
+            if (is_numeric($request->c)) {
+                return new \App\Http\Resources\TeamCollection(Team::orderBy('id', 'desc')->take($request->c)->get());
+            }
+        }
+        return new \App\Http\Resources\TeamCollection(Team::all());
+    }
+
+    public function apiShow(Request $request)
+    {
+        return new \App\Http\Resources\Team(Team::get($request->id));
+    }
 }

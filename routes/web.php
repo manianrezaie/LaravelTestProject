@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -37,3 +37,21 @@ Route::group(["middleware" => ['auth'], 'prefix' => 'admin'], function () {
 
 
 });
+
+
+Route::get('/players', function () {
+    return view('home');
+})->name('players');
+
+Route::get('/player/{id}', function ($id) {
+    return view('home');
+})->name('player');
+
+Route::get('/teams', function () {
+    return view('home');
+})->name('teams');
+
+
+Route::get('/team/{id}', function ($id) {
+    return view('home');
+})->name('team');
